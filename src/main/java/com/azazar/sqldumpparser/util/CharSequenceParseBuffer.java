@@ -33,11 +33,23 @@ public class CharSequenceParseBuffer implements ParseBuffer {
     @Override
     public void advance() {
         ofs++;
+
+        if (ofs > s.length()) {
+            ofs--;
+
+            throw new IndexOutOfBoundsException();
+        }
     }
 
     @Override
     public void advance(int offset) {
         ofs += offset;
+
+        if (ofs > s.length()) {
+            ofs -= offset;
+
+            throw new IndexOutOfBoundsException();
+        }
     }
 
     @Override
